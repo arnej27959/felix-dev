@@ -130,6 +130,11 @@ public class URLHandlersTest
     @Test
     void urlHandlersWithSecurity() throws Exception
     {
+        int major = Integer.valueOf(System.getProperty("java.specification.version", "0"));
+        if (major >= 25) {
+            System.err.println("setSecurityManager is not possible with JDK 25+");
+            return;
+        }
         System.setSecurityManager(new SecurityManager()
         {
             @Override
@@ -148,6 +153,11 @@ public class URLHandlersTest
     @Test
     void urlHandlersWithClassLoaderIsolationWithSecurity() throws Exception
     {
+        int major = Integer.valueOf(System.getProperty("java.specification.version", "0"));
+        if (major >= 25) {
+            System.err.println("setSecurityManager is not possible with JDK 25+");
+            return;
+        }
         System.setSecurityManager(new SecurityManager()
         {
             @Override
